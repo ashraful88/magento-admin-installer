@@ -1,0 +1,9 @@
+.htaccess.sample
+.modgit/
+.modman/
+.idea/
+LICENSE_AFL.txt
+LICENSE.html
+LICENSE.txt
+LICENSE_EE*
+RELEASE_NOTES.txt

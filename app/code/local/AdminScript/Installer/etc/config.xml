@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AdminScript_Installer>
+            <version>1.0.0</version>
+        </AdminScript_Installer>
+    </modules>
+    <global>
+
+    </global>
+</config>
