@@ -7,5 +7,14 @@
     </modules>
     <global>
 
+        <resources>
+            <adminscript_cms_setup>
+                <setup>
+                    <module>AdminScript_Installer</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </adminscript_cms_setup>
+        </resources>
+
     </global>
 </config>
