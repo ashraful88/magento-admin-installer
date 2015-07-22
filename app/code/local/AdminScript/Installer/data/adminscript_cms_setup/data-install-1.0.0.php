@@ -15,9 +15,8 @@ $data = array(
 );
 
 // Check if static block already exists:
-$block = Mage::app()->getLayout()->createBlock('cms/block')->setBlockId($data['identifier']);
-
-if ($block->getId() == false) {
+$block = Mage::getModel('cms/block')->load($data['identifier'])->isObjectNew();
+if ($block) {
     // Create static block:
     Mage::getModel('cms/block')->setData($data)->save();
 }
@@ -49,5 +48,9 @@ $model->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'my_custom_attribute_co
     'apply_to' => 'simple',  // Apply to simple product type
 ));
 
+// System Configuraton 
+$conf = new Mage_Core_Model_Config();
+$address = 'Address Text Here';
+$conf->saveConfig('general/store_information/address' $address, 'default', 0);
 
 $installer->endSetup();
