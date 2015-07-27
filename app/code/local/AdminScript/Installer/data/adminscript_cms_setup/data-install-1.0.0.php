@@ -14,11 +14,14 @@ $data = array(
     'is_active' => 1
 );
 
-// Check if static block already exists:
-$block = Mage::getModel('cms/block')->load($data['identifier'])->isObjectNew();
-if ($block) {
-    // Create static block:
+// Check if static block already exists, if yes then update content
+$block = Mage::getModel('cms/block')->load($data['identifier']);
+if ($block->isObjectNew()) {
+    // Create static block
     Mage::getModel('cms/block')->setData($data)->save();
+}else{
+    // Update Content
+    $block->setData('content', $data['content'])->save();
 }
 
 
