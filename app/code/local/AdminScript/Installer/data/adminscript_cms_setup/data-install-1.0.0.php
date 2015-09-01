@@ -2,8 +2,8 @@
 $installer = $this;
 $installer->startSetup();
 
-// For creating for a store
-//$store = Mage::app()->getStore('store_code');
+// For creating for a store, comment out if simgle store
+$store = Mage::app()->getStore('store_code');
 
 // ===== CMS Static Blocks =====
 $data = array(
@@ -55,5 +55,27 @@ $model->addAttribute(Mage_Catalog_Model_Product::ENTITY, 'my_custom_attribute_co
 $conf = new Mage_Core_Model_Config();
 $address = 'Address Text Here';
 $conf->saveConfig('general/store_information/address', $address, 'default', 0);
+
+/* === CMS PAGE === */
+
+$page = Mage::getModel('cms/page');
+$page->setStoreId($store->getId());
+$page->load('home','identifier');
+
+$cmsPage = Array (
+    'title' => 'Home PH',
+    'identifier' => 'home',
+    'content' => 'page content here',
+    'is_active' => 1,
+    'stores' => array($store->getId())
+);
+
+if ($page->getId()) {
+    $page->setContent($cmsPage ['content']);
+    $page->setTitle($cmsPage ['title']);
+    $page->save();
+} else {
+    Mage::getModel('cms/page')->setData($cmsPage)->save();
+}
 
 $installer->endSetup();
