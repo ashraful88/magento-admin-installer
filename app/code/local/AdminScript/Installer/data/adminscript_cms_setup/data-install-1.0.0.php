@@ -78,4 +78,10 @@ if ($page->getId()) {
     Mage::getModel('cms/page')->setData($cmsPage)->save();
 }
 
+/*=== Category Upgrade ====*/
+$category = Mage::getModel('catalog/category')->load(79); // enter category id
+$category->setDescription('Sample Category description'); // Update category description
+$category->setIsAnchor(1); // set category "Is Anchor" yes
+$category->save();
+
 $installer->endSetup();
